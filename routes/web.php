@@ -82,9 +82,15 @@ Route::get('/actualizar-fornecedor', function () {
 })->middleware(['auth', 'verified'])->name('actualizar-fornecedor');
 require __DIR__ . '/auth.php';
 
-Route::get('/utilizadores', function () {
-    return view('utilizadores');
-})->middleware(['auth', 'verified'])->name('utilizadores');
+Route::get('/utilizador', function () {
+    return view('utilizador.utilizadores');
+})->middleware(['auth', 'verified'])->name('utilizador');
+require __DIR__ . '/auth.php';
+
+
+Route::get('/utilizadoress', function () {
+    return view('utilizadoress');
+})->middleware(['auth', 'verified'])->name('utilizadoress');
 require __DIR__ . '/auth.php';
 // Rotas no painel de controle 
 

@@ -64,7 +64,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6.75a3 3 0 11-6 0 3 3 0 016 0zm4.5 13.5a6 6 0 00-12 0M12 7.5v.008h.008V7.5H12z" />
                         </svg>
                     </div>
-                    <a href="javascript:void(0);" id="salasButton" class="mt-6 block text-base leading-7 text-gray-700 font-bold dark:text-gray-200 hover:text-green-600 dark:hover:text-green-400">
+                    <a href="utilizadores" id="salasButton" class="mt-6 block text-base leading-7 text-gray-700 font-bold dark:text-gray-200 hover:text-green-600 dark:hover:text-green-400">
                         Utilizadores
                     </a>
                     <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Controle de actividades</p>
