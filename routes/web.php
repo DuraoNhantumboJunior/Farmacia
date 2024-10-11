@@ -1,0 +1,90 @@
+<?php
+
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+
+// Route::get('/', function () {
+//     return view('login');
+// });
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', [AuthenticatedSessionController::class, 'create'])
+        ->name('login');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+// Rota da venda de medicamentos 
+Route::get('/vendas', function () {
+    return view('vendas');
+})->middleware(['auth', 'verified'])->name('vendas');
+
+// Rota para stocar os medicamentos 
+Route::get('/stocker', function () {
+    return view('stock');
+})->middleware(['auth', 'verified'])->name('stock');
+
+// Rota para os relatórios do sistema 
+Route::get('/relatorios', function () {
+    return view('relatorios');
+})->middleware(['auth', 'verified'])->name('relatorios');
+require __DIR__ . '/auth.php';
+
+
+//rotas da fase de testes 
+Route::get('/registar-fornecedor', function () {
+    return view('fornecedor.registar-fornecedor');
+})->middleware(['auth', 'verified'])->name('registar-fornecedor');
+require __DIR__ . '/auth.php';
+
+Route::get('/medicamentos', function () {
+    return view('medicamento.medicamentos');
+})->middleware(['auth', 'verified'])->name('medicamentos');
+require __DIR__ . '/auth.php';
+
+Route::get('/registar-medicamento', function () {
+    return view('medicamento.registar-medicamento');
+})->middleware(['auth', 'verified'])->name('registar-medicamento');
+require __DIR__ . '/auth.php';
+
+Route::get('/actualizar-medicamento', function () {
+    return view('medicamento.actualizar-medicamento');
+})->middleware(['auth', 'verified'])->name('actualizar-medicamento');
+require __DIR__ . '/auth.php';
+Route::get('/stock', function () {
+    return view('stock.stocks');
+})->middleware(['auth', 'verified'])->name('stock');
+require __DIR__ . '/auth.php';
+
+Route::get('/actualizar-stock', function () {
+    return view('stock.actualizar-stock');
+})->middleware(['auth', 'verified'])->name('actualizar-stock');
+require __DIR__ . '/auth.php';
+
+Route::get('/registar-stock', function () {
+    return view('stock.registar-stock');
+})->middleware(['auth', 'verified'])->name('registar-stock');
+require __DIR__ . '/auth.php';
+
+Route::get('/fornecedores', function () {
+    return view('fornecedor.fornecedores');
+})->middleware(['auth', 'verified'])->name('fornecedores');
+require __DIR__ . '/auth.php';
+
+Route::get('/actualizar-fornecedor', function () {
+    return view('fornecedor.actualizar-fornecedor');
+})->middleware(['auth', 'verified'])->name('actualizar-fornecedor');
+require __DIR__ . '/auth.php';
+
+Route::get('/utilizadores', function () {
+    return view('utilizadores');
+})->middleware(['auth', 'verified'])->name('utilizadores');
+require __DIR__ . '/auth.php';
+// Rotas no painel de controle 
+
