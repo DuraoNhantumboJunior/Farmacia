@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\MedicamentosController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Medicamento;
@@ -103,6 +104,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/armazenar-medicamento', [MedicamentosController::class, 'store'])->name('armazenar.medicamento');
     Route::get('/medicamentos', [MedicamentosController::class, 'show'])->name('medicamentos');
     Route::get('/actualizar-medicamento/{id}', [MedicamentosController::class, 'alterarMedicamento']);
-    Route::put('/armazenar-medicamento-actualizado',[MedicamentosController::class, 'update'])->name('update.medicamento');
+    Route::put('/armazenar-medicamento-actualizado', [MedicamentosController::class, 'update'])->name('update.medicamento');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    // Rotas para Fornecedores
+    Route::get('/registar-fornecedor', [FornecedorController::class, 'create'])->name('registar.fornecedor');
+    Route::post('/armazenar-fornecedor', [FornecedorController::class, 'store'])->name('armazenar.fornecedor');
+    Route::get('/fornecedores', [FornecedorController::class, 'show'])->name('fornecedores');
+    Route::get('/actualizar-fornecedor/{id}', [FornecedorController::class, 'alterarFornecedor'])->name('actualizar.fornecedor');
+    Route::put('/armazenar-fornecedor-actualizado', [FornecedorController::class, 'update'])->name('update.fornecedor');
 });

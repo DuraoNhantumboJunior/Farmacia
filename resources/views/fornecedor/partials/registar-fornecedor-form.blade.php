@@ -1,4 +1,6 @@
-<form action="">
+<form method="post" action="{{ route('armazenar.fornecedor') }}">
+    @csrf
+    @method('post')
     <div class="border-b border-gray-900/10 pb-12">
         <h2 class="text-base font-semibold leading-7  ">Dados do Fornecedor</h2>
         <p class="mt-1 text-sm leading-6 text-red-700  ">Os fornecedores são adicionados uma única fez no sistema.</p>
@@ -30,8 +32,8 @@
             <div class="sm:col-span-3">
                 <label for="" class="block text-sm font-medium leading-6  ">Contacto:</label>
                 <div class="mt-2">
-                    <x-text-input id="tell-fornecedor" class="block w-full mr-20" type="number" name="tell"
-                        :value="old('tell-fornecedor')" required autofocus autocomplete="" placeholder="Contacto do fornecedor" />
+                    <x-text-input id="telefone" class="block w-full mr-20" type="number" name="telefone"
+                        :value="old('telefone')" required autofocus autocomplete="" placeholder="Contacto do fornecedor" />
                 </div>
             </div>
             <div class="sm:col-span-3">
