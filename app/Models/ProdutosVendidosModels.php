@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Medicamentos extends Model
+class ProdutosVendidosModels extends Model
 {
     use HasFactory;
 
@@ -15,8 +15,10 @@ class Medicamentos extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'Apresentacao',
-        'unidade_medida',
+        'venda_id',
+        'stock_id',
+        'quantidade',
+        'preco',
+        'subtotal',
     ];
 }

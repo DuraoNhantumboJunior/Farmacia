@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProdutosVendidos extends Model
+class StockModels extends Model
 {
     use HasFactory;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'venda_id',
-        'stock_id',
+        'fornecedor_id',
+        'medicamento_id',
+        'composicao_unit',
         'quantidade',
         'preco',
-        'subtotal',
+        'validade',
     ];
 }
