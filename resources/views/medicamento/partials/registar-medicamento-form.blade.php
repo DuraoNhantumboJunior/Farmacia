@@ -6,26 +6,26 @@
 
     </header>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('armazenar.medicamento') }}" class="mt-6 space-y-6">
         @csrf
-        @method('put')
+        @method('post')
 
         <div class="flex flex-wrap -mx-3">
             <div class="w-full sm:w-1/2 px-3 py-3">
                 <x-input-label for="name" :value="__('Nome:')" />
-                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name')" required autofocus autocomplete="name" />
-                <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                <x-text-input id="medicamento" name="medicamento" type="text" class="mt-1 block w-full" :value="old('medicamento')" required autofocus autocomplete="medicamento" />
+                <x-input-error class="mt-2" :messages="$errors->get('medicamento')" />
             </div>
 
             <div class="w-full sm:w-1/2 px-3 py-3">
                 <x-input-label for="apresentacao" :value="__('Apresentação:')" />
-                <x-text-input id="apresentacao" name="apresentacao" type="text" class="mt-1 block w-full" :value="old('apresentacao')" required autocomplete="username" disabled="true" />
+                <x-text-input id="apresentacao" name="apresentacao" type="text" class="mt-1 block w-full" :value="old('apresentacao')" required autocomplete="apresentacao"  />
                 <x-input-error class="mt-2" :messages="$errors->get('apresentacao')" />
             </div>
 
             <div class="w-full sm:w-1/2 px-3 py-3">
                 <x-input-label for="medida" :value="__('Unidade de Medida:')" />
-                <x-text-input id="medida" name="medida" type="text" class="mt-1 block w-full read-only:true" :value="old('medida')" required autofocus autocomplete="medida" disabled="true" />
+                <x-text-input id="medida" name="medida" type="text" class="mt-1 block w-full read-only:true" :value="old('medida')" required autofocus autocomplete="medida"  />
                 <x-input-error class="mt-2" :messages="$errors->get('medida')" />
             </div>
 

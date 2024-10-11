@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\MedicamentosController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Medicamento;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -43,10 +45,10 @@ Route::get('/registar-fornecedor', function () {
 })->middleware(['auth', 'verified'])->name('registar-fornecedor');
 require __DIR__ . '/auth.php';
 
-Route::get('/medicamentos', function () {
-    return view('medicamento.medicamentos');
-})->middleware(['auth', 'verified'])->name('medicamentos');
-require __DIR__ . '/auth.php';
+// Route::get('/medicamentos', function () {
+//     return view('medicamento.medicamentos');
+// })->middleware(['auth', 'verified'])->name('medicamentos');
+// require __DIR__ . '/auth.php';
 
 Route::get('/registar-medicamento', function () {
     return view('medicamento.registar-medicamento');
@@ -94,3 +96,13 @@ Route::get('/utilizadoress', function () {
 require __DIR__ . '/auth.php';
 // Rotas no painel de controle 
 
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/registar-medicamento', [MedicamentosController::class, 'create']);
+    Route::post('/armazenar-medicamento', [MedicamentosController::class, 'store'])->name('armazenar.medicamento');
+    Route::get('/medicamentos', [MedicamentosController::class, 'show'])->name('medicamentos');
+    Route::get('/actualizar-medicamento/{id}', [MedicamentosController::class, 'alterarMedicamento']);
+    Route::put('/armazenar-medicamento-actualizado',[MedicamentosController::class, 'update'])->name('update.medicamento');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
