@@ -1,22 +1,22 @@
 @if(session('success'))
-<div x-data="{ show: true }" x-show="show" class="fixed top-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg"
-    x-init="setTimeout(() => show = false, 5000)">
-    {{ session('success') }}
-</div>
+    <div x-data="{ show: true }" x-show="show" class="fixed top-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg"
+         x-init="setTimeout(() => show = false, 5000)">
+        {{ session('success') }}
+    </div>
 @endif
 
 @if(session('error'))
-<div x-data="{ show: true }" x-show="show" class="fixed top-5 right-5 bg-red-500 text-white py-2 px-4 rounded-lg shadow-lg"
-    x-init="setTimeout(() => show = false, 5000)">
-    {{ session('error') }}
-</div>
+    <div x-data="{ show: true }" x-show="show" class="fixed top-5 right-5 bg-red-500 text-white py-2 px-4 rounded-lg shadow-lg"
+         x-init="setTimeout(() => show = false, 5000)">
+        {{ session('error') }}
+    </div>
 @endif
 
 
 
-<form method="post" action="{{ route('update.stock') }}" class="mt-6 space-y-6">
+<form method="post" action="{{ route('armazenar.stock') }}" class="mt-6 space-y-6">
     @csrf
-    @method('put')
+    @method('post')
 
     <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
         <div class="max-w-5xl">
@@ -30,8 +30,8 @@
                     <div class="mb-4" x-data="dropdownFornecedor()">
                         <div class="relative">
                             <x-text-input type="text" x-model="query" placeholder="Pesquisar..." @focus="open = true" name="produto" id="produto"
-                                class="block w-full mr-20 dark:text-white text-black font-semibold focus:border-green-500 focus:ring-green-500 sm:text-sm rounded-md"
-                                @keydown.escape="open = false" @click.outside="open = false" autocomplete="off" />
+                                class="block w-full mr-20 dark:text-white text-black focus:border-green-500 focus:ring-green-500 sm:text-sm rounded-md"
+                                @keydown.escape="open = false" @click.outside="open = false" autocomplete="off"/>
 
                             <!-- Dropdown options -->
                             <ul x-show="open" x-transition class="absolute z-10 mt-1 w-full shadow-lg max-h-60 rounded-md py-1 text-base ring-1 bg-green-100 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
@@ -49,30 +49,29 @@
                         </div>
                     </div>
                 </div>
-                <x-text-input id="id" name="id" type="number" :value="old('id',$stock->id)" class="hidden"></x-text-input>
-                <x-text-input id="fornecedor_id" name="fornecedor_id" type="number" :value="old('fornecedor_id',$stock->fornecedor_id)" class="hidden"></x-text-input>
+                <x-text-input id="fornecedor_id" name="fornecedor_id" type="number" :value="old('fornecedor_id')" class="hidden"></x-text-input>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="email" :value="__('Email:')" />
-                    <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email',$stock->fornecedor->email)" required autocomplete="email" readonly />
+                    <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email')" required autocomplete="email" readonly />
                     <x-input-error class="mt-2" :messages="$errors->get('email')" />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="cell" :value="__('Contacto:')" />
-                    <x-text-input id="cell" name="cell" type="text" class="mt-1 block w-full" :value="old('cell',$stock->fornecedor->telefone)" required autocomplete="" readonly />
+                    <x-text-input id="cell" name="cell" type="text" class="mt-1 block w-full" :value="old('cell')" required autocomplete="" readonly />
                     <x-input-error class="mt-2" :messages="$errors->get('cell')" />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="nuit" :value="__('NUIT')" />
-                    <x-text-input id="nuit" name="nuit" type="text" class="mt-1 block w-full" :value="old('nuit',$stock->fornecedor->nuit)" required autocomplete="nuit" readonly />
+                    <x-text-input id="nuit" name="nuit" type="text" class="mt-1 block w-full" :value="old('nuit')" required autocomplete="nuit" readonly />
                     <x-input-error class="mt-2" :messages="$errors->get('nuit')" />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="endereco" :value="__('Endereço:')" />
-                    <x-text-input id="endereco" name="endereco" type="text" class="mt-1 block w-full" :value="old('endereco',$stock->fornecedor->endereco)" required autocomplete="endereco" readonly />
+                    <x-text-input id="endereco" name="endereco" type="text" class="mt-1 block w-full" :value="old('endereco')" required autocomplete="endereco" readonly />
                     <x-input-error class="mt-2" :messages="$errors->get('endereco')" />
                 </div>
             </div>
@@ -94,15 +93,15 @@
 
                         <div class="relative">
                             <x-text-input type="text" x-model="query" placeholder="Pesquisar..." @focus="open = true" name="medicamento" id="medicamento"
-                                class="block w-full mr-20 text-black font-semibold dark:text-white focus:border-green-500 focus:ring-green-500 sm:text-sm rounded-md"
-                                @keydown.escape="open = false" @click.outside="open = false" :value="old('medicamento', $stock->medicamento->Nome)" />
+                                class="block w-full mr-20 dark:text-white text-black focus:border-green-500 focus:ring-green-500 sm:text-sm rounded-md"
+                                @keydown.escape="open = false" @click.outside="open = false" />
 
 
                             <!-- Dropdown options -->
                             <ul x-show="open" x-transition class="absolute z-10 mt-1 w-full  shadow-lg max-h-60 rounded-md py-1 text-base ring-1 bg-green-100 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
                                 <template x-for="(item, index) in filteredItems" :key="index">
                                     <li @click="selectItem(item)" class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-green-600 ">
-                                        <span x-text="open ? item.nome + ' - ' + item.apresentacao : item.nome " class="block"></span>
+                                        <span x-text="open ? item.nome + ' - ' + item.apresentacao : item.nome" " class="block"></span>
                                     </li>
                                 </template>
 
@@ -114,51 +113,48 @@
                         </div>
                     </div>
                 </div>
-                <x-text-input id="medicamento_id" name="medicamento_id" type="number" :value="old('medicamento_id',$stock->medicamento_id)" class="hidden"></x-text-input>
+                <x-text-input id="medicamento_id" name="medicamento_id" type="number" :value="old('medicamento_id')" class="hidden"></x-text-input>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="apresentacao" :value="__('Apresentação:')" />
-                    <x-text-input id="apresentacao" name="apresentacao" type="text" class="mt-1 block w-full" :value="old('apresentacao',$stock->medicamento->Apresentacao)" required autocomplete="apresentacao" readonly />
+                    <x-text-input id="apresentacao" name="apresentacao" type="text" class="mt-1 block w-full" :value="old('apresentacao')" required autocomplete="apresentacao" readonly />
                     <x-input-error class="mt-2" :messages="$errors->get('apresentacao')" />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="composto" :value="__('Composto:')" />
-                    <x-text-input id="composicao_unit" name="composicao_unit" type="number" class="mt-1 block w-full" :value="old('composicao_unit',$stock->composicao_unit)" required autofocus autocomplete="composicao_unit" />
+                    <x-text-input id="composicao_unit" name="composicao_unit" type="number" class="mt-1 block w-full" :value="old('composicao_unit')" required autofocus autocomplete="composicao_unit" placeholder="peso ou volume do medicamento ex: 500 mg"/>
                     <x-input-error class="mt-2" :messages="$errors->get('composicao_unit')" />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="medida" :value="__('Unidade de Medida:')" />
-                    <x-text-input id="medida" name="medida" type="text" class="mt-1 block w-full" :value="old('medida',$stock->medicamento->unidade_medida)" required autofocus autocomplete="medida" readonly />
+                    <x-text-input id="medida" name="medida" type="text" class="mt-1 block w-full" :value="old('medida')" required autofocus autocomplete="medida" readonly />
                     <x-input-error class="mt-2" :messages="$errors->get('medida')" />
                 </div>
 
-                <!-- <div class="w-full sm:w-1/2 px-3 py-3">
-                    <x-input-label for="Quantidade" :value="__('Quantidade:')" />
-                    <x-text-input id="quantidade" name="quantidade" type="number" class="mt-1 block w-full" :value="old('quantidade',$stock->quantidade)" required autofocus autocomplete="quantidade" placeholder="O número de Caixas " />
-                    <x-input-error class="mt-2" :messages="$errors->get('quantidade')" />
-                </div> -->
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="comprimidos_por_cartela" :value="__('Comprimidos por Cartela:')" />
-                    <x-text-input id="comprimidos_por_cartela" name="comprimidos_por_cartela" type="number" class="mt-1 block w-full" :value="old('comprimidos_por_cartela', $stock->comprimidos_por_cartela)" required autofocus autocomplete="off" placeholder="Número de comprimidos em uma única cartela." />
+                    <x-text-input id="comprimidos_por_cartela" name="comprimidos_por_cartela" type="number" class="mt-1 block w-full" :value="old('comprimidos_por_cartela')" required autofocus autocomplete="off" placeholder="Número de comprimidos em uma única cartela." />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="Quantidade" :value="__('Quantidade de Cartelas:')" />
-                    <x-text-input id="numero_de_cartelas" name="numero_de_cartelas" type="number" class="mt-1 block w-full" :value="old('numero_de_cartelas',$stock->numero_de_cartelas)" required autofocus autocomplete="off" placeholder="O número de de cartelas " />
+                    <x-text-input id="numero_de_cartelas" name="numero_de_cartelas" type="number" class="mt-1 block w-full" :value="old('numero_de_cartelas')" required autofocus autocomplete="off" placeholder="O número de de cartelas " />
                     <x-input-error class="mt-2" :messages="$errors->get('quantidade')" />
                 </div>
 
+                
+
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="preco" :value="__('Preço de venda:')" />
-                    <x-text-input id="preco" name="preco" type="number" class="mt-1 block w-full" :value="old('preco',$stock->preco_por_cartela)" required autofocus autocomplete="preco" />
+                    <x-text-input id="preco" name="preco" type="number" class="mt-1 block w-full" :value="old('preco')" required autofocus autocomplete="off" placeholder="Preço de venda por cartela" />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="validade" :value="__('Válido até:')" />
-                    <x-text-input id="validade" name="validade" type="date" class="mt-1 block w-full" :value="old('validade',$stock->validade)" required autofocus autocomplete="off" />
+                    <x-text-input id="validade" name="validade" type="date" class="mt-1 block w-full" :value="old('validade')" required autofocus autocomplete="off" />
                 </div>
             </div>
 
@@ -179,7 +175,7 @@
     function dropdownMedicamento() {
         return {
             open: false,
-            query: '{{ $stock->medicamento->Nome }}',
+            query: '',
             items: [
                 @foreach($medicamentos as $medicamento) {
                     id: '{{ $medicamento->id }}',
@@ -216,7 +212,7 @@
     function dropdownFornecedor() {
         return {
             open: false,
-            query: '{{$stock->fornecedor->nome}}',
+            query: '',
             items: [{
                 id: '{{ $fornecedor->id }}',
                 nome: '{{ $fornecedor->nome }}',
@@ -240,7 +236,7 @@
                 document.getElementById('cell').value = item.contacto;
                 document.getElementById('nuit').value = item.nuit;
                 document.getElementById('endereco').value = item.endereco;
-                document.getElementById('fornecedor_id').value = item.id;
+                document.getElementById('fornecedor_id').value=item.id;
             }
         }
     }
