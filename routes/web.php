@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\MedicamentosController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StockController;
+use App\Http\Controllers\UsersController;
 use App\Models\Medicamento;
 use Illuminate\Support\Facades\Route;
 
@@ -12,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UsersController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthenticatedSessionController::class, 'create'])
@@ -24,9 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 // Rota da venda de medicamentos 
-Route::get('/vendas', function () {
-    return view('vendas');
-})->middleware(['auth', 'verified'])->name('vendas');
+Route::get('/vendas', [StockController::class,'vendas'])->middleware(['auth', 'verified'])->name('vendas');
 
 // Rota para stocar os medicamentos 
 Route::get('/stocker', function () {
@@ -46,10 +44,7 @@ Route::get('/registar-fornecedor', function () {
 })->middleware(['auth', 'verified'])->name('registar-fornecedor');
 require __DIR__ . '/auth.php';
 
-// Route::get('/medicamentos', function () {
-//     return view('medicamento.medicamentos');
-// })->middleware(['auth', 'verified'])->name('medicamentos');
-// require __DIR__ . '/auth.php';
+
 
 Route::get('/registar-medicamento', function () {
     return view('medicamento.registar-medicamento');
@@ -85,16 +80,11 @@ Route::get('/actualizar-fornecedor', function () {
 })->middleware(['auth', 'verified'])->name('actualizar-fornecedor');
 require __DIR__ . '/auth.php';
 
-Route::get('/utilizador', function () {
-    return view('utilizador.utilizadores');
-})->middleware(['auth', 'verified'])->name('utilizador');
-require __DIR__ . '/auth.php';
+// Route::get('/utilizador', function () {
+//     return view('utilizador.utilizadores');
+// })->middleware(['auth', 'verified'])->name('utilizador');
+// require __DIR__ . '/auth.php';
 
-
-Route::get('/utilizadoress', function () {
-    return view('utilizadoress');
-})->middleware(['auth', 'verified'])->name('utilizadoress');
-require __DIR__ . '/auth.php';
 // Rotas no painel de controle 
 
 
@@ -114,4 +104,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/fornecedores', [FornecedorController::class, 'show'])->name('fornecedores');
     Route::get('/actualizar-fornecedor/{id}', [FornecedorController::class, 'alterarFornecedor'])->name('actualizar.fornecedor');
     Route::put('/armazenar-fornecedor-actualizado', [FornecedorController::class, 'update'])->name('update.fornecedor');
+
+     // Rotas para stock
+     Route::get('/registar-stock', [StockController::class, 'create'])->name('registar-stock');
+     Route::post('/armazenar-stock', [StockController::class, 'store'])->name('armazenar.stock');
+     Route::get('/stock', [StockController::class, 'show'])->name('stocks');
+     Route::get('/actualizar-stock/{id}', [StockController::class, 'alterarStock'])->name('actualizar.stock');
+     Route::put('/armazenar-stock-actualizado', [StockController::class, 'update'])->name('update.stock');
+
+
+     Route:: get('/utilizador', [UsersController::class, 'showUsers'])->name('utilizador');
 });
