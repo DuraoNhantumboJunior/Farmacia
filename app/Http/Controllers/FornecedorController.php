@@ -26,7 +26,7 @@ class FornecedorController extends Controller
         $request->validate([
             'fornecedor' => ['required', 'string', 'max:255'],
             'endereco' => ['required', 'string', 'max:255'],
-            'telefone' => ['required', 'string', 'max:20'],
+            'telefone' => ['required', 'string', 'max:15'],
             'email' => ['required', 'email', 'max:255'],
             'nuit' => ['required', 'numeric', 'digits:9'], // Exemplo de NUIT com 9 dígitos
         ]);

@@ -21,4 +21,10 @@ class Fornecedore extends Model
         'email',
         'nuit',
     ];
+
+    // Relação opcional com o modelo Stock
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class);
+    }
 }
