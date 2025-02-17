@@ -1,15 +1,15 @@
 @if(session('success'))
-    <div x-data="{ show: true }" x-show="show" class="fixed top-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg"
-         x-init="setTimeout(() => show = false, 5000)">
-        {{ session('success') }}
-    </div>
+<div x-data="{ show: true }" x-show="show" class="fixed top-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg"
+    x-init="setTimeout(() => show = false, 5000)">
+    {{ session('success') }}
+</div>
 @endif
 
 @if(session('error'))
-    <div x-data="{ show: true }" x-show="show" class="fixed top-5 right-5 bg-red-500 text-white py-2 px-4 rounded-lg shadow-lg"
-         x-init="setTimeout(() => show = false, 5000)">
-        {{ session('error') }}
-    </div>
+<div x-data="{ show: true }" x-show="show" class="fixed top-5 right-5 bg-red-500 text-white py-2 px-4 rounded-lg shadow-lg"
+    x-init="setTimeout(() => show = false, 5000)">
+    {{ session('error') }}
+</div>
 @endif
 
 
@@ -31,7 +31,7 @@
                         <div class="relative">
                             <x-text-input type="text" x-model="query" placeholder="Pesquisar..." @focus="open = true" name="produto" id="produto"
                                 class="block w-full mr-20 dark:text-white text-black focus:border-green-500 focus:ring-green-500 sm:text-sm rounded-md"
-                                @keydown.escape="open = false" @click.outside="open = false" autocomplete="off"/>
+                                @keydown.escape="open = false" @click.outside="open = false" autocomplete="off" />
 
                             <!-- Dropdown options -->
                             <ul x-show="open" x-transition class="absolute z-10 mt-1 w-full shadow-lg max-h-60 rounded-md py-1 text-base ring-1 bg-green-100 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
@@ -49,29 +49,29 @@
                         </div>
                     </div>
                 </div>
-                <x-text-input id="fornecedor_id" name="fornecedor_id" type="number" :value="old('fornecedor_id')" class="hidden"></x-text-input>
+                <x-text-input id="fornecedor_id" name="fornecedor_id" type="number" :value="old('fornecedor_id')" class="hidden" require></x-text-input>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="email" :value="__('Email:')" />
-                    <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email')" required autocomplete="email" readonly />
+                    <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email')" autocomplete="email" readonly />
                     <x-input-error class="mt-2" :messages="$errors->get('email')" />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="cell" :value="__('Contacto:')" />
-                    <x-text-input id="cell" name="cell" type="text" class="mt-1 block w-full" :value="old('cell')" required autocomplete="" readonly />
+                    <x-text-input id="cell" name="cell" type="text" class="mt-1 block w-full" :value="old('cell')" autocomplete="" readonly />
                     <x-input-error class="mt-2" :messages="$errors->get('cell')" />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="nuit" :value="__('NUIT')" />
-                    <x-text-input id="nuit" name="nuit" type="text" class="mt-1 block w-full" :value="old('nuit')" required autocomplete="nuit" readonly />
+                    <x-text-input id="nuit" name="nuit" type="text" class="mt-1 block w-full" :value="old('nuit')" autocomplete="nuit" readonly />
                     <x-input-error class="mt-2" :messages="$errors->get('nuit')" />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="endereco" :value="__('Endereço:')" />
-                    <x-text-input id="endereco" name="endereco" type="text" class="mt-1 block w-full" :value="old('endereco')" required autocomplete="endereco" readonly />
+                    <x-text-input id="endereco" name="endereco" type="text" class="mt-1 block w-full" :value="old('endereco')" autocomplete="endereco" readonly />
                     <x-input-error class="mt-2" :messages="$errors->get('endereco')" />
                 </div>
             </div>
@@ -101,7 +101,7 @@
                             <ul x-show="open" x-transition class="absolute z-10 mt-1 w-full  shadow-lg max-h-60 rounded-md py-1 text-base ring-1 bg-green-100 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
                                 <template x-for="(item, index) in filteredItems" :key="index">
                                     <li @click="selectItem(item)" class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-green-600 ">
-                                        <span x-text="open ? item.nome + ' - ' + item.apresentacao : item.nome" " class="block"></span>
+                                        <span x-text="open ? item.nome + ' - ' + item.designacao : item.nome" " class=" block"></span>
                                     </li>
                                 </template>
 
@@ -113,48 +113,55 @@
                         </div>
                     </div>
                 </div>
-                <x-text-input id="medicamento_id" name="medicamento_id" type="number" :value="old('medicamento_id')" class="hidden"></x-text-input>
+                <x-text-input id="medicamento_id" name="medicamento_id" type="number" :value="old('medicamento_id')" require class="hidden"></x-text-input>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
-                    <x-input-label for="apresentacao" :value="__('Apresentação:')" />
-                    <x-text-input id="apresentacao" name="apresentacao" type="text" class="mt-1 block w-full" :value="old('apresentacao')" required autocomplete="apresentacao" readonly />
-                    <x-input-error class="mt-2" :messages="$errors->get('apresentacao')" />
+                    <x-input-label for="designacao" :value="__('Apresentação:')" />
+                    <x-text-input id="designacao" name="designacao" type="text" class="mt-1 block w-full" :value="old('designacao')" autocomplete="designacao" readonly />
+                    <x-input-error class="mt-2" :messages="$errors->get('designacao')" />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="composto" :value="__('Composto:')" />
-                    <x-text-input id="composicao_unit" name="composicao_unit" type="number" class="mt-1 block w-full" :value="old('composicao_unit')" required autofocus autocomplete="composicao_unit" placeholder="peso ou volume do medicamento ex: 500 mg"/>
+                    <x-text-input id="composicao_unit" name="composicao_unit" type="number" class="mt-1 block w-full" :value="old('composicao_unit')" autofocus autocomplete="composicao_unit" placeholder="peso ou volume do medicamento ex: 500 mg" />
                     <x-input-error class="mt-2" :messages="$errors->get('composicao_unit')" />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="medida" :value="__('Unidade de Medida:')" />
-                    <x-text-input id="medida" name="medida" type="text" class="mt-1 block w-full" :value="old('medida')" required autofocus autocomplete="medida" readonly />
+                    <x-text-input id="medida" name="medida" type="text" class="mt-1 block w-full" :value="old('medida')" autofocus autocomplete="medida" readonly />
                     <x-input-error class="mt-2" :messages="$errors->get('medida')" />
                 </div>
 
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="comprimidos_por_cartela" :value="__('Comprimidos por Cartela:')" />
-                    <x-text-input id="comprimidos_por_cartela" name="comprimidos_por_cartela" type="number" class="mt-1 block w-full" :value="old('comprimidos_por_cartela')" required autofocus autocomplete="off" placeholder="Número de comprimidos em uma única cartela." />
+                    <x-text-input id="comprimidos_por_cartela" name="comprimidos_por_cartela" type="number" class="mt-1 block w-full" :value="old('comprimidos_por_cartela')" autofocus autocomplete="off" placeholder="Número de comprimidos em uma única cartela." />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="Quantidade" :value="__('Quantidade de Cartelas:')" />
-                    <x-text-input id="numero_de_cartelas" name="numero_de_cartelas" type="number" class="mt-1 block w-full" :value="old('numero_de_cartelas')" required autofocus autocomplete="off" placeholder="O número de de cartelas " />
+                    <x-text-input id="numero_de_cartelas" name="numero_de_cartelas" type="number" class="mt-1 block w-full" :value="old('numero_de_cartelas')" autofocus autocomplete="off" placeholder="O número de de cartelas " />
                     <x-input-error class="mt-2" :messages="$errors->get('quantidade')" />
                 </div>
 
-                
+                <div class="w-full sm:w-1/2 px-3 py-3">
+                    <x-input-label for="Quantidade" :value="__('Quantidade Do produto:')" />
+                    <x-text-input id="quantidade_produto" name="quantidade_produto" type="number" class="mt-1 block w-full" :value="old('quantidade_produto')" autofocus autocomplete="off" placeholder="O Quantidade de produtos " />
+                </div>
+
+
+
+
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="preco" :value="__('Preço de venda:')" />
-                    <x-text-input id="preco" name="preco" type="number" class="mt-1 block w-full" :value="old('preco')" required autofocus autocomplete="off" placeholder="Preço de venda por cartela" />
+                    <x-text-input id="preco" name="preco" type="number" class="mt-1 block w-full" :value="old('preco')" require autofocus autocomplete="off" placeholder="Preço de venda por cartela" />
                 </div>
 
                 <div class="w-full sm:w-1/2 px-3 py-3">
                     <x-input-label for="validade" :value="__('Válido até:')" />
-                    <x-text-input id="validade" name="validade" type="date" class="mt-1 block w-full" :value="old('validade')" required autofocus autocomplete="off" />
+                    <x-text-input id="validade" name="validade" type="date" class="mt-1 block w-full" :value="old('validade')" autofocus autocomplete="off" require />
                 </div>
             </div>
 
@@ -179,8 +186,8 @@
             items: [
                 @foreach($medicamentos as $medicamento) {
                     id: '{{ $medicamento->id }}',
-                    nome: '{{ $medicamento->Nome }}',
-                    apresentacao: '{{ $medicamento->Apresentacao }}',
+                    nome: '{{ $medicamento->nome }}',
+                    designacao: '{{ $medicamento->designacao }}',
                     medida: '{{ $medicamento->unidade_medida }}'
                 },
                 @endforeach
@@ -196,9 +203,22 @@
                 this.open = false;
 
                 // Preencher os campos com os dados do medicamento selecionado
-                document.getElementById('apresentacao').value = item.apresentacao;
+                document.getElementById('designacao').value = item.designacao;
                 document.getElementById('medida').value = item.medida;
                 document.getElementById('medicamento_id').value = item.id;
+
+                // Verificar se o medicamento selecionado é do tipo "Comprimido"
+                if (item.designacao.toLowerCase() === 'comprimido') {
+                    // Mostrar os campos adicionais para comprimidos
+                    document.getElementById('comprimidos_por_cartela').closest('div').style.display = 'block';
+                    document.getElementById('numero_de_cartelas').closest('div').style.display = 'block';
+                    document.getElementById('quantidade_produto').closest('div').style.display = 'none';
+                } else {
+                    // Ocultar os campos se não for comprimido
+                    document.getElementById('comprimidos_por_cartela').closest('div').style.display = 'none';
+                    document.getElementById('numero_de_cartelas').closest('div').style.display = 'none';
+                    document.getElementById('quantidade_produto').closest('div').style.display = 'block';
+                }
             }
         }
     }
@@ -236,7 +256,7 @@
                 document.getElementById('cell').value = item.contacto;
                 document.getElementById('nuit').value = item.nuit;
                 document.getElementById('endereco').value = item.endereco;
-                document.getElementById('fornecedor_id').value=item.id;
+                document.getElementById('fornecedor_id').value = item.id;
             }
         }
     }

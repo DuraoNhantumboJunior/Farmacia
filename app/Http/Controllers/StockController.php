@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Fornecedore;
 use App\Models\Medicamento;
 use App\Models\Stock;
+use App\Models\Stock_Produto;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -28,45 +29,85 @@ class StockController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        // dd($request);
+        //   dd($request);
         // Validação dos dados de entrada
-        $validade = $request->validate([
-            'fornecedor_id' => ['required', 'integer'],
-            'medicamento_id' => ['required', 'integer'],
-            'composicao_unit' => ['required', 'integer'],
-            'comprimidos_por_cartela' => ['required', 'integer'],
-            'numero_de_cartelas' => ['required', 'integer'],
-            'preco' => ['required', 'numeric', 'between:0,999999.99'],
-            'validade' => ['required', 'date', 'after:today'],
-
-        ]);
-        //   dd($validade);
-
-        // Verificar se já existe um estoque para o medicamento e fornecedor
-        $existingStock = Stock::where('medicamento_id', $request->medicamento_id)
-            ->where('fornecedor_id', $request->fornecedor_id)
-            ->first();
-
-        if ($existingStock) {
-            return redirect()->route('stocks')
-                ->with('error', 'Este estoque já existe para o fornecedor e medicamento informados.');
-        }
-
-        // Criar o novo estoque
         try {
-            Stock::create([
-                'fornecedor_id' => $request->fornecedor_id,
-                'medicamento_id' => $request->medicamento_id,
-                'composicao_unit' => $request->composicao_unit,
-                'comprimidos_por_cartela' => $request->comprimidos_por_cartela,
-                'numero_de_cartelas' => $request->numero_de_cartelas,
-                'preco_por_cartela' => $request->preco,
-                'validade' => $request->validade,
 
-            ]);
+            if ($request->designacao == 'Comprimido') {
 
-            return redirect()->route('stocks')
-                ->with('success', 'Estoque adicionado com sucesso!');
+                $request->validate([
+                    'fornecedor_id' => ['required', 'integer'],
+                    'medicamento_id' => ['required', 'integer'],
+                    'composicao_unit' => ['required', 'integer'],
+                    'comprimidos_por_cartela' => ['required', 'integer'],
+                    'numero_de_cartelas' => ['required', 'integer'],
+                    'preco' => ['required', 'numeric', 'between:0,999999.99'],
+                    'validade' => ['required', 'date', 'after:today'],
+
+                ]);
+
+                // Verificar se já existe um estoque para o medicamento e fornecedor
+                $existingStock = Stock::where('medicamento_id', $request->medicamento_id)
+                    ->where('fornecedor_id', $request->fornecedor_id)
+                    ->first();
+
+                if ($existingStock) {
+                    return redirect()->route('stocks')
+                        ->with('error', 'Este estoque já existe para o fornecedor e medicamento informados.');
+                }
+
+                // Criar o novo estoque
+
+                Stock::create([
+                    'fornecedor_id' => $request->fornecedor_id,
+                    'medicamento_id' => $request->medicamento_id,
+                    'composicao_unit' => $request->composicao_unit,
+                    'comprimidos_por_cartela' => $request->comprimidos_por_cartela,
+                    'numero_de_cartelas' => $request->numero_de_cartelas,
+                    'preco_por_cartela' => $request->preco,
+                    'validade' => $request->validade,
+
+                ]);
+                return redirect()->route('stocks')
+                    ->with('success', 'Estoque adicionado com sucesso!');
+            } else {
+
+                $request->validate([
+                    'fornecedor_id' => ['required', 'integer'],
+                    'medicamento_id' => ['required', 'integer'],
+                    'composicao_unit' => ['required', 'integer'],
+                    'quantidade_produto' => ['required', 'integer'],
+                    'preco' => ['required', 'numeric', 'between:0,999999.99'],
+                    'validade' => ['required', 'date', 'after:today'],
+
+                ]);
+
+                // Verificar se já existe um estoque para o medicamento e fornecedor
+                $existingStock = Stock_Produto::where('medicamento_id', $request->medicamento_id)
+                    ->where('fornecedor_id', $request->fornecedor_id)
+                    ->first();
+
+                if ($existingStock) {
+                    return redirect()->route('stocks')
+                        ->with('error', 'Este estoque já existe para o fornecedor e medicamento informados.');
+                }
+
+
+                // Criar o novo estoque
+
+                $val = Stock_Produto::create([
+                    'fornecedor_id' => $request->fornecedor_id,
+                    'medicamento_id' => $request->medicamento_id,
+                    'composicao_unit'  => $request->composicao_unit,
+                    'quantidade' => $request->quantidade_produto,
+                    'preco' => $request->preco,
+                    'validade' => $request->validade
+
+                ]);
+                
+                return redirect()->route('stocks')
+                    ->with('success', 'Estoque adicionado com sucesso!');
+            }
         } catch (\Exception $e) {
             return redirect()->route('stocks')
                 ->with('error', 'Erro ao adicionar estoque: ' . $e->getMessage());
@@ -111,8 +152,13 @@ class StockController extends Controller
             'validade' => $request->validade,
         ]);
 
-        
+
 
         return redirect()->route('stocks')->with('success', 'Estoque atualizado com sucesso!');
+    }
+
+    public function vendas(): View {
+        $produtos = Stock::with(['fornecedor', 'medicamento'])->get();
+        return view('vendas', compact('produtos'));
     }
 }

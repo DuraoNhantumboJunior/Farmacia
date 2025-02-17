@@ -17,7 +17,7 @@
             @foreach($stocks as $stock)
             <tr class="border-t">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">{{$stock->fornecedor->nome}}</td>
-                <td class="pr-6 py-4 whitespace-nowrap text-sm">{{$stock->medicamento->Nome}}</td>
+                <td class="pr-6 py-4 whitespace-nowrap text-sm">{{$stock->medicamento->nome}}</td>
                 <td class="pr-6 py-4 whitespace-nowrap text-sm">{{$stock->composicao_unit}} {{$stock->medicamento->unidade_medida}}</td>
                 <td class="pr-6 py-4 whitespace-nowrap text-sm">{{$stock->comprimidos_por_cartela}}</td>
                 <td class="pr-6 py-4 whitespace-nowrap text-sm">{{$stock->numero_de_cartelas}}</td>
