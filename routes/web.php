@@ -8,7 +8,7 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\UsersController;
 use App\Models\Medicamento;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ReciboController;
 // Route::get('/', function () {
 //     return view('login');
 // });
@@ -114,4 +114,9 @@ Route::middleware('auth')->group(function () {
 
 
      Route:: get('/utilizador', [UsersController::class, 'showUsers'])->name('utilizador');
+
+    
+
+Route::get('/recibo/{id}', [ReciboController::class, 'gerarRecibo'])->name('recibo.gerar');
+
 });
