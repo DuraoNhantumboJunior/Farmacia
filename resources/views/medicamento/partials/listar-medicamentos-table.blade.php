@@ -7,7 +7,7 @@
             <thead class="bg-gray-400 text-white sticky top-0">
                 <tr>
                     <th class="px-10 py-3 text-left text-xs font-medium uppercase tracking-wider">Nome</th>
-                    <th class="px-15 py-3 text-left text-xs font-medium uppercase tracking-wider">Apresentação</th>
+                    <th class="px-15 py-3 text-left text-xs font-medium uppercase tracking-wider">Designação</th>
                     <th class="px-15 py-3 text-left text-xs font-medium uppercase tracking-wider">Unidade de medida</th>
                     <th class="px-15 py-3 text-left text-xs font-medium uppercase tracking-wider">Operações</th>
                 </tr>
@@ -15,8 +15,8 @@
             <tbody id="medicamentoTable" class="bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200">
                 @foreach($medicamentos as $medicamento)
                 <tr class="border-t">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">{{$medicamento->Nome}}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm">{{$medicamento->Apresentacao}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">{{$medicamento->nome}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">{{$medicamento->designacao}}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm">{{$medicamento->unidade_medida}}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm">
                         <a href="actualizar-medicamento/{{$medicamento->id}}">

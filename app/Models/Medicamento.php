@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Medicamento extends Model
 {
     use HasFactory;
-    
+
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +17,13 @@ class Medicamento extends Model
      */
     protected $fillable = [
         'nome',
-        'apresentacao',
+        'designacao',
         'unidade_medida',
     ];
+
+    // Relação com o modelo Stock
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class);
+    }
 }

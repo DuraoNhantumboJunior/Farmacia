@@ -9,18 +9,18 @@
     <form method="post" action="{{ route('update.medicamento') }}" class="mt-6 space-y-6">
         @csrf
         @method('put')
-        <x-text-input id="id" name="id" type="number" :value="$medicamento->id" class="  hidden"></x-text-input>
+        <x-text-input id="id" name="id" type="number" :value="$medicamento->id" class=" hidden"></x-text-input>
 
         <div class="flex flex-wrap -mx-3">
             <div class="w-full sm:w-1/2 px-3 py-3">
                 <x-input-label for="name" :value="__('Nome:')" />
-                <x-text-input id="medicamento" name="medicamento" type="text" class="mt-1 block w-full" :value="old('medicamento', $medicamento->Nome)" required autofocus autocomplete="medicamento" />
+                <x-text-input id="medicamento" name="medicamento" type="text" class="mt-1 block w-full" :value="old('medicamento', $medicamento->nome)" required autofocus autocomplete="medicamento" />
                 <x-input-error class="mt-2" :messages="$errors->get('medicamento')" />
             </div>
 
             <div class="w-full sm:w-1/2 px-3 py-3">
-                <x-input-label for="apresentacao" :value="__('Apresentação:')" />
-                <x-text-input id="apresentacao" name="apresentacao" type="text" class="mt-1 block w-full" :value="old('apresentacao', $medicamento->Apresentacao)" required autocomplete="apresentacao" />
+                <x-input-label for="apresentacao" :value="__('Desegnação:')" />
+                <x-text-input id="apresentacao" name="apresentacao" type="text" class="mt-1 block w-full" :value="old('apresentacao', $medicamento->designacao)" required autocomplete="apresentacao" />
                 <x-input-error class="mt-2" :messages="$errors->get('apresentacao')" />
             </div>
 
