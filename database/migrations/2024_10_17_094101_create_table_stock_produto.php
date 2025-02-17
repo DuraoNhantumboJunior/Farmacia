@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('fornecedor_id')->constrained('fornecedores')->onDelete('cascade');;
             $table->integer('produto_id')->constrained('produtos')->onDelete('cascade');;
             $table->integer('quantidade');
-            $table->decimal('preco,8,2');
+            $table->decimal('preco','8','2');
             $table->date('validade');
             $table->timestamps();
         });
