@@ -26,7 +26,7 @@
                         Medicamentos
                     </a>
                     <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Medicamentos</p>
-                    <span class="mt-2 inline-block text-sm font-medium text-sky-500 hover:text-sky-600 dark:text-blue-400">40</span>
+                    <span class="mt-2 inline-block text-sm font-medium text-sky-500 hover:text-sky-600 dark:text-blue-400">{{$medicamentos}}</span>
                     <!-- Menu "Salas" -->
                 </div>
                 <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg transition-transform transform hover:-translate-y-1 hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800">
@@ -39,7 +39,7 @@
                         Fornecedores
                     </a>
                     <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Fornecedores</p>
-                    <span class="mt-2 inline-block text-sm font-medium text-sky-500 hover:text-sky-600 dark:text-blue-400">66</span>
+                    <span class="mt-2 inline-block text-sm font-medium text-sky-500 hover:text-sky-600 dark:text-blue-400">{{$fornecedores}}</span>
                     <!-- Menu "Salas" -->
                 </div>
                 <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg transition-transform transform hover:-translate-y-1 hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800">
@@ -55,7 +55,7 @@
                         Stock
                     </a>
                     <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Produtos Disponiveis </p>
-                    <span class="mt-2 inline-block text-sm font-medium text-sky-500 hover:text-sky-600 dark:text-blue-400">77</span>
+                    <span class="mt-2 inline-block text-sm font-medium text-sky-500 hover:text-sky-600 dark:text-blue-400">{{$stock}}</span>
                     <!-- Menu "Salas" -->
                 </div>
                 <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg transition-transform transform hover:-translate-y-1 hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800 ">
@@ -64,11 +64,11 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6.75a3 3 0 11-6 0 3 3 0 016 0zm4.5 13.5a6 6 0 00-12 0M12 7.5v.008h.008V7.5H12z" />
                         </svg>
                     </div>
-                    <a href="utilizadores" id="salasButton" class="mt-6 block text-base leading-7 text-gray-700 font-bold dark:text-gray-200 hover:text-green-600 dark:hover:text-green-400">
+                    <a href="utilizador" id="salasButton" class="mt-6 block text-base leading-7 text-gray-700 font-bold dark:text-gray-200 hover:text-green-600 dark:hover:text-green-400">
                         Utilizadores
                     </a>
                     <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Controle de actividades</p>
-                    <span class="mt-2 inline-block text-sm font-medium text-sky-500 hover:text-sky-600 dark:text-blue-400">26</span>
+                    <span class="mt-2 inline-block text-sm font-medium text-sky-500 hover:text-sky-600 dark:text-blue-400">{{$users}}</span>
                     <!-- Menu "Salas" -->
                 </div>
             </div>
