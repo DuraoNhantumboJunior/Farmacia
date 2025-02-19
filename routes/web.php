@@ -117,6 +117,7 @@ Route::middleware('auth')->group(function () {
 
     
 
-Route::get('/recibo/{id}', [ReciboController::class, 'gerarRecibo'])->name('recibo.gerar');
+// Route::get('/recibo/{id}', [ReciboController::class, 'gerarRecibo'])->name('recibo.gerar');
+Route::get('/recibo', [ReciboController::class, 'gerarRecibo']);
 
 });
