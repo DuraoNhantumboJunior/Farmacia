@@ -2,7 +2,7 @@
     <div class="mb-4">
         <input type="text" id="searchInput" placeholder="Pesquisar Fornecedores..." class="border border-gray-300 rounded py-2 px-4 w-full" />
     </div>
-    <div class="max-h-64 overflow-y-auto">
+    <div class="max-h-64 overflow-y-auto mb-14">
         <table class="min-w-full w-full">
             <thead class="bg-gray-400 text-white">
                 <tr>

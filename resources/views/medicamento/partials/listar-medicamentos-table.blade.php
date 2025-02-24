@@ -2,7 +2,7 @@
     <div class="mb-4">
         <input type="text" id="searchInput" placeholder="Pesquisar Medicamentos..." class="border border-gray-300 rounded py-2 px-4 w-full" />
     </div>
-    <div class="max-h-64 overflow-y-auto">
+    <div class="max-h-64 overflow-y-auto mb-14">
         <table class="min-w-full w-full">
             <thead class="bg-gray-400 text-white sticky top-0">
                 <tr>
@@ -47,7 +47,7 @@
         </table>
     </div>
     <!-- Botão de adicionar -->
-    <a href="registar-medicamento" class=" pt-12">
+    <a href="registar-medicamento" class=" pt-12 ">
         <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 mt-6 rounded flex items-center absolute right-4 bottom-4 shadow-lg">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus mr-2" viewBox="0 0 16 16">
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
