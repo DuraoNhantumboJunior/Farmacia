@@ -52,7 +52,7 @@
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                                onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -82,6 +82,12 @@
             <x-responsive-nav-link :href="route('vendas')" :active="request()->routeIs('vendas')">
                 {{ __('Vendas') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('registar-stock')" :active="request()->routeIs('stock')">
+                {{ __('Stock') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('relatorios')" :active="request()->routeIs('relatorios')">
+                {{ __('Relatórios') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -101,7 +107,7 @@
                     @csrf
 
                     <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
+                        onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
