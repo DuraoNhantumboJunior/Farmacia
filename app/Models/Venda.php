@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VendasModels extends Model
+class Venda extends Model
 {
     use HasFactory;
 
@@ -15,9 +15,15 @@ class VendasModels extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'cliente_id',
-        'stock_id',
+        'user_id',
+        'produtos',
+        'pagamento',
         'total',
+        'data_venda',
+    ];
+
+    protected $casts = [
+        'produtos' => 'array', // Converte JSON automaticamente em array ao recuperar
+        'quantidade' => 'array',
     ];
 }
