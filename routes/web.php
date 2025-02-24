@@ -9,12 +9,15 @@ use App\Http\Controllers\UsersController;
 use App\Models\Medicamento;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReciboController;
+use App\Http\Controllers\RelatorioController;
+use App\Http\Controllers\VendasController;
+
 // Route::get('/', function () {
 //     return view('login');
 // });
 
 
-Route::get('/dashboard', [UsersController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UsersController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthenticatedSessionController::class, 'create'])
@@ -24,18 +27,27 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 // Rota da venda de medicamentos 
-Route::get('/vendas', [StockController::class,'vendas'])->middleware(['auth', 'verified'])->name('vendas');
+Route::post('/vender', [VendasController::class, 'store'])->name('vendas');
+Route::get('/vendas', [StockController::class, 'vendas'])->middleware(['auth', 'verified'])->name('vendas');
 
 // Rota para stocar os medicamentos 
 Route::get('/stocker', function () {
     return view('stock');
 })->middleware(['auth', 'verified'])->name('stock');
 
+// Rota para a página de relatórios (HTML)
+Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios');
+
 // Rota para os relatórios do sistema 
-Route::get('/relatorios', function () {
-    return view('relatorios');
-})->middleware(['auth', 'verified'])->name('relatorios');
-require __DIR__ . '/auth.php';
+Route::get('/relatorio', [RelatorioController::class, 'obterDados']);
+
+
+// Rota para obter dados do gráfico (JSON)
+Route::get('/relatorio', [RelatorioController::class, 'obterDados']);
+// Route::get('/relatorios', function () {
+//     return view('relatorios');
+// })->middleware(['auth', 'verified'])->name('relatorios');
+// require __DIR__ . '/auth.php';
 
 
 //rotas da fase de testes 
@@ -105,19 +117,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/actualizar-fornecedor/{id}', [FornecedorController::class, 'alterarFornecedor'])->name('actualizar.fornecedor');
     Route::put('/armazenar-fornecedor-actualizado', [FornecedorController::class, 'update'])->name('update.fornecedor');
 
-     // Rotas para stock
-     Route::get('/registar-stock', [StockController::class, 'create'])->name('registar-stock');
-     Route::post('/armazenar-stock', [StockController::class, 'store'])->name('armazenar.stock');
-     Route::get('/stock', [StockController::class, 'show'])->name('stocks');
-     Route::get('/actualizar-stock/{id}', [StockController::class, 'alterarStock'])->name('actualizar.stock');
-     Route::put('/armazenar-stock-actualizado', [StockController::class, 'update'])->name('update.stock');
+    // Rotas para stock
+    Route::get('/registar-stock', [StockController::class, 'create'])->name('registar-stock');
+    Route::post('/armazenar-stock', [StockController::class, 'store'])->name('armazenar.stock');
+    Route::get('/stock', [StockController::class, 'show'])->name('stocks');
+    Route::get('/actualizar-stock/{id}', [StockController::class, 'alterarStock'])->name('actualizar.stock');
+    Route::put('/armazenar-stock-actualizado', [StockController::class, 'update'])->name('update.stock');
 
 
-     Route:: get('/utilizador', [UsersController::class, 'showUsers'])->name('utilizador');
+    Route::get('/utilizador', [UsersController::class, 'showUsers'])->name('utilizador');
 
     
-
-// Route::get('/recibo/{id}', [ReciboController::class, 'gerarRecibo'])->name('recibo.gerar');
-Route::get('/recibo', [ReciboController::class, 'gerarRecibo']);
-
+    // Route::get('/recibo/{id}', [ReciboController::class, 'gerarRecibo'])->name('recibo.gerar');
+    Route::get('/recibo', [ReciboController::class, 'gerarRecibo']);
 });
