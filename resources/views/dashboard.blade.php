@@ -81,6 +81,7 @@
         </div>
 
         <script>
+            var vendasAcumuladas = @json($vendasAcumuladas);
             // Obtém o elemento de canvas pelo ID
             var ctx = document.getElementById('myChart').getContext('2d');
 
@@ -91,7 +92,7 @@
                     labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'], // nomes da parte de baixo
                     datasets: [{
                         label: 'Vendas Por Mês',
-                        data: [2, 3, 5, 2, 5, 6, 3, 6, 8, 3, 17, 13], // Dados 
+                        data: vendasAcumuladas, // Dados 
                         backgroundColor: 'rgba(54, 162, 235, 0.2)', //áreas preenchidas
                         borderColor: 'rgba(54, 162, 235, 1)', //borda do gráfico
                         borderWidth: 2
