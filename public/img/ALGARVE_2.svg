@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2177.77 2177.77">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #006838;
+        font-family: MontserratRoman-Bold, Montserrat;
+        font-size: 162.54px;
+        font-variation-settings: 'wght' 700;
+        font-weight: 700;
+        width:32px;
+        height:32px;
+      }
+
+      .cls-2 {
+        fill: transparent;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <rect class="cls-2" x="-2427.26" y="-150.74" width="6634.21" height="2540.94"/>
+  <text class="cls-1" transform="translate(225.05 1146.24)"><tspan x="0" y="0">FARMÁCIA ALGARVE</tspan></text>
+</svg>
