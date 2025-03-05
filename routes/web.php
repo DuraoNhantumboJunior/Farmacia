@@ -126,8 +126,10 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/utilizador', [UsersController::class, 'showUsers'])->name('utilizador');
+    Route::patch('/users/{id}/alterar-estado', [UsersController::class, 'alterarEstado'])->name('users.alterarEstado');
+    Route::patch('/users/{id}/alterar-nivel', [UsersController::class, 'alterarNivel'])->name('users.alterarNivel');
 
-    
+
     // Route::get('/recibo/{id}', [ReciboController::class, 'gerarRecibo'])->name('recibo.gerar');
     Route::get('/recibo', [ReciboController::class, 'gerarRecibo']);
 });
