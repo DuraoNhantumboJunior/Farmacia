@@ -2,7 +2,7 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <form id="form-login" method="POST">
         @csrf
 
         <!-- Email Address -->
@@ -39,9 +39,74 @@
             </a>
             @endif
 
+            @if (Route::has('register'))
+            <a
+                href="{{ route('register') }}"
+                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                Register
+            </a>
+            @endif
+
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
     </form>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("form-login").addEventListener("submit", function(e) {
+                e.preventDefault();
+
+                let form = this;
+                let formData = new FormData(form);
+
+                fetch("{{ route('login') }}", {
+                        method: "POST",
+                        body: formData,
+                        headers: {
+                            "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
+                        }
+                    })
+                    .then(response => response.json().then(data => ({
+                        status: response.status,
+                        body: data
+                    }))) // Captura o status
+                    .then(({
+                        status,
+                        body
+                    }) => {
+                        if (status === 200 && body.status === "success") {
+                            Swal.fire({
+                                icon: "success",
+                                title: "🎉 Sucesso!",
+                                text: body.message,
+                                timer: 2000,
+                                showConfirmButton: false
+                            }).then(() => {
+                                window.location.href = body.redirect;
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Ops!",
+                                text: body.message,
+                                showConfirmButton: true
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erro:", error);
+                        Swal.fire({
+                            icon: "error",
+                            title: "Erro inesperado!",
+                            text: "Ocorreu um erro no login. Tente novamente!",
+                            showConfirmButton: true
+                        });
+                    });
+            });
+        });
+    </script>
+
+
 </x-guest-layout>
