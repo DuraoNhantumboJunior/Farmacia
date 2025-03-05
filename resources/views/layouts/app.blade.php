@@ -15,6 +15,9 @@
     <!-- Lottie JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.4/lottie.min.js"></script>
 
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/preline@latest/dist/preline.js"></script>
+
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/app.js', 'resources/js/loader.js', 'resources/json/Coracao.json'])
@@ -30,16 +33,21 @@
         </svg>
 
         <style>
-    main {
-        background-image: url("{{ asset('img/ALGARVE.svg') }}");
-        background-repeat: no-repeat; /* Não repete a imagem */
-        background-position: center center; /* Centraliza a imagem no centro da tela */
-        background-size: contain; /* A imagem será redimensionada para caber dentro da tela */
-        height: 100vh; /* Garante que o main ocupe toda a altura da tela */
-        width: 100%; /* Garante que o main ocupe toda a largura da tela */
-        position: relative;
-    }
-</style>
+            main {
+                background-image: url("{{ asset('img/ALGARVEDARK.svg') }}");
+                background-repeat: no-repeat;
+                /* Não repete a imagem */
+                background-position: center center;
+                /* Centraliza a imagem no centro da tela */
+                background-size: contain;
+                /* A imagem será redimensionada para caber dentro da tela */
+                height: 100vh;
+                /* Garante que o main ocupe toda a altura da tela */
+                width: 100%;
+                /* Garante que o main ocupe toda a largura da tela */
+                position: relative;
+            }
+        </style>
 
 
     </div>
