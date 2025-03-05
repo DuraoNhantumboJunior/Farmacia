@@ -1,3 +1,5 @@
+@if($auth == 'Master')
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+    <x-slot name="header" class="flex row-span-1">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight justify-start">
             | {{ __('Dashboard') }}
         </h2>
     </x-slot>
@@ -86,23 +88,44 @@
             var ctx = document.getElementById('myChart').getContext('2d');
 
             // Criação do gráfico usando Chart.js
+            // Defina as cores com base no tema (exemplo: claro ou escuro)
+            const temaEscuro = true; // Altere para `false` para o tema claro
+
+            const corTexto = temaEscuro ? 'green' : 'black';
+            const corGrade = temaEscuro ? 'rgba(188, 255, 255,.4)' : 'rgba(0, 0, 0, 0.1)';
+            const corFundo = temaEscuro ? 'rgba(0, 111, 179, 0.8)' : 'rgba(0, 111, 179, 0.4)';
+            const corBorda = temaEscuro ? 'rgba(0, 111, 179, 1)' : 'rgba(0, 23, 76, 1)';
+
             var myChart = new Chart(ctx, {
-                type: 'bar', // 
+                type: 'bar',
                 data: {
-                    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'], // nomes da parte de baixo
+                    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
                     datasets: [{
                         label: 'Vendas Por Mês',
-                        data: vendasAcumuladas, // Dados 
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)', //áreas preenchidas
-                        borderColor: 'rgba(54, 162, 235, 1)', //borda do gráfico
+                        data: vendasAcumuladas,
+                        backgroundColor: corFundo,
+                        borderColor: corBorda,
                         borderWidth: 2
                     }]
                 },
                 options: {
                     responsive: true,
                     scales: {
+                        x: {
+                            ticks: {
+                                color: corTexto // Cor do texto dos meses
+                            },
+                            grid: {
+                                color: corGrade // Cor da grade do eixo X
+                            }
+                        },
                         y: {
-                            beginAtZero: true // Eixo Y começa do zero
+                            ticks: {
+                                color: corTexto // Cor dos números do eixo Y
+                            },
+                            grid: {
+                                color: corGrade // Cor da grade do eixo Y
+                            }
                         }
                     }
                 }
@@ -111,3 +134,9 @@
 
 
 </x-app-layout>
+
+@else
+<script>
+    window.location.href = 'vendas';
+</script>
+@endif
